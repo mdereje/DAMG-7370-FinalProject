@@ -2,7 +2,7 @@
 
 **Designing Advanced Data Architectures for Business Intelligence**
 **Northeastern University — Spring 2026**
-**Author:** Michael Dereje (dereje.m@northeastern.edu)
+**Author:** Michael Dereje (dereje.m@northeastern.edu), Gaurav Dalal (dalal.g@northeastern.edu), Pratik Kanade (kanade.pr@northeastern.edu)
 
 ---
 
