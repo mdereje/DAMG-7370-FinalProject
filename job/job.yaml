@@ -1,0 +1,33 @@
+resources:
+  jobs:
+    food_inspection_job:
+      name: food_inspection_job
+      tasks:
+        - task_key: bronze_to_silver_chicago
+          notebook_task:
+            notebook_path: /Workspace/Users/dereje.m@northeastern.edu/DAMG-7370-FinalProject/pipeline/01_silver_chicago
+            source: WORKSPACE
+        - task_key: bronze_to_silver_dallas
+          notebook_task:
+            notebook_path: /Workspace/Users/dereje.m@northeastern.edu/DAMG-7370-FinalProject/pipeline/02_silver_dallas
+            source: WORKSPACE
+        - task_key: silver_to_gold_scd_2
+          depends_on:
+            - task_key: bronze_to_silver_chicago
+            - task_key: bronze_to_silver_dallas
+          pipeline_task:
+            pipeline_id: 560f96c9-3360-4f01-9fe7-ccc85815ce15
+            full_refresh: true
+        - task_key: gold
+          depends_on:
+            - task_key: silver_to_gold_scd_2
+          notebook_task:
+            notebook_path: /Workspace/Users/dereje.m@northeastern.edu/DAMG-7370-FinalProject/pipeline/03_gold
+            source: WORKSPACE
+      git_source:
+        git_url: https://github.com/mdereje/DAMG-7370-FinalProject.git
+        git_provider: gitHub
+        git_branch: main
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
